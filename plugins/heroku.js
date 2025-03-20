@@ -23,13 +23,13 @@ function secondsToDhms(seconds) {
         return dDisplay + hDisplay + mDisplay + sDisplay;
 }
 const {
-        plugin,
+        rudhra,
         GenListMessage,
         config
 } = require('../lib');
 
 
-plugin({
+rudhra({
         pattern: 'setvar ?(.*)',
         fromMe: true,
         desc: 'Set heroku config var',
@@ -48,7 +48,7 @@ plugin({
                 await message.send(`HEROKU : ${error.body.message}`)
         })
 })
-plugin({
+rudhra({
         pattern: 'delvar ?(.*)',
         fromMe: true,
         desc: 'Delete heroku config var',
