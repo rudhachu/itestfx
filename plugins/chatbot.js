@@ -1,12 +1,12 @@
 const {
-        plugin,
+        rudhra,
         getJson,
         config,
         mode
 } = require('../lib');
 
 
-plugin({
+rudhra({
         on: 'text',
         fromMe: mode
 }, async (m, match) => {
