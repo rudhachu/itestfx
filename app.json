@@ -1,0 +1,58 @@
+{
+  "name": "rudhra-bot",
+  "description": "Multi featured whatsapp bot",
+  "keywords": ["rudhra-bot", "rudhra"],
+  "success_url": "/md/",
+  "stack": "container",
+  "env": {
+    "SESSION_ID": {
+      "description": "session id",
+      "required": true,
+      "value": ""
+    },
+    "HEROKU_API_KEY": {
+      "description": "For updating bot and setting vars remotely",
+      "required": true,
+      "value": ""
+    },
+    "HEROKU_APP_NAME": {
+      "description": "Exact name which you gave at the top",
+      "required": true,
+      "value": ""
+    },
+    "WORKTYPE": {
+      "description": "Enter bot mode must be public/private",
+      "required": true,
+      "value": "private"
+    },
+    "PREFIX": {
+      "description": "bot preifx  ., [.,!], false",
+      "required": true,
+      "value": "."
+    },
+    "WARN": {
+      "description": "Warning count",
+      "required": true,
+      "value": "4"
+    },
+    "SUDO": {
+      "description": "Sudo numbers with country code seperate with , for multiple numbers",
+      "required": true,
+      "value": "null"
+    },
+    "ERROR_MSG": {
+      "description": "send error messages to bot number",
+      "required": true,
+      "value": "true"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:basic"
+    } 
+  ],
+  "buildpacks": [
+    { "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" },
+    { "url": "https://github.com/carlosdommor/heroku-buildpack-ffmpeg-latest" }
+  ]
+}
