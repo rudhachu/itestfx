@@ -1,5 +1,5 @@
 const {
-    plugin,
+    rudhra,
     fetchJson,
     getBuffer,
     sendUrl,
@@ -10,7 +10,7 @@ const {
 } = require('../lib');
 const fs = require('fs');
 
-plugin({
+rudhra({
     pattern: 'url',
     desc: 'convert image url',
     react: "⛰️",
@@ -21,7 +21,7 @@ plugin({
     return await sendUrl(message, message.client);
 });
 
-plugin({
+rudhra({
     pattern: 'take',
     desc: 'change sticker and audio authority',
     react: "⚒️",
