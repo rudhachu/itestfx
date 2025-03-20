@@ -1,4 +1,4 @@
-const { plugin } = require('../lib/');
+const { rudhra } = require('../lib/');
 
 let AFK = {
 	isAfk: false,
@@ -18,7 +18,7 @@ function secondsToHms(d) {
 	return hDisplay + mDisplay + sDisplay;
 }
 
-plugin({
+rudhra({
 	on: 'all',
 	fromMe: false
 }, async (message, match) => {
@@ -46,7 +46,7 @@ plugin({
 		}
 });
 
-plugin({
+rudhra({
 	on: 'text',
 	fromMe: true
 }, async (message, match) => {
@@ -57,7 +57,7 @@ plugin({
 		await message.send('```I am not AFK anymore!```');
 });
 
-plugin({
+rudhra({
 	pattern: 'afk ?(.*)',
 	fromMe: true,
 	desc: 'away from keyboard',
