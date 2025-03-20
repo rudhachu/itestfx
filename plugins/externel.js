@@ -1,5 +1,5 @@
 const {
-    plugin,
+    rudhra,
     personalDB,
     extractUrlsFromString,
     config,
@@ -12,7 +12,7 @@ const {
 const axios = require("axios");
 const fs = require("fs");
 
-plugin({
+rudhra({
     pattern: 'restart ?(.*)',
     desc: 'restart bot',
     react: "🥱",
@@ -22,7 +22,7 @@ plugin({
     await message.send('```restarting```',{linkPreview: linkPreview()})
     process.exit(0);
 })
-plugin({
+rudhra({
     pattern: 'plugin ?(.*)',
     desc: 'install external plugins',
     react: "🦥",
@@ -77,7 +77,7 @@ plugin({
         return await message.send(text,{linkPreview:linkPreview()})
     }
 })
-plugin({
+rudhra({
     pattern: 'remove ?(.*)',
     desc: 'remove installed external plugin',
     react: "😶",
