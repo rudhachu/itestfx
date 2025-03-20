@@ -1,7 +1,7 @@
 const bgm = require('../media/bgm.json');
-const { plugin, config, mode } = require('../lib');
+const { rudhra, config, mode } = require('../lib');
 
-plugin({
+rudhra({
         on: 'text',
         fromMe: mode
 }, async (m, match) => {
