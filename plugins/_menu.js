@@ -33,7 +33,7 @@ rudhra({
     type: 'whatsapp',
     fromMe: mode
 }, async (message, match) => {
-    return await send_menu(message);
+    return await sendMenu(message);
 });
 
 rudhra({
@@ -51,5 +51,5 @@ rudhra({
 	    return await message.send('*success*');
     }
     const {alive} = await personalDB(['alive'], {content:{}},'get');
-    return await send_alive(message, alive);
+    return await sendAlive(message, alive);
 });
