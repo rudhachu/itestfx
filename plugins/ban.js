@@ -1,12 +1,12 @@
 const {
-    plugin,
+    rudhra,
     personalDB
 } = require('../lib')
 const {
     exec
 } = require("child_process");
 
-plugin({
+rudhra({
     pattern: 'ban ?(.*)',
     desc: 'deactivate bot in specified jid',
     type: 'owner',
@@ -26,7 +26,7 @@ plugin({
     return exec('pm2 restart all')
 });
 
-plugin({
+rudhra({
     pattern: 'unban ?(.*)',
     desc: 'activate bot in deactivated bot jid',
     type: 'owner',
