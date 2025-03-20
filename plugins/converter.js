@@ -1,5 +1,5 @@
 const {
-    plugin,
+    rudhra,
     mode,
     toAudio,
     toPTT,
@@ -12,7 +12,7 @@ const {
 const fs = require('fs');
 const ffmpeg = require('fluent-ffmpeg');
 
-plugin({
+rudhra({
     pattern: 'photo ?(.*)',
     desc: 'convert sticker to image',
     type: "converter",
@@ -31,7 +31,7 @@ plugin({
                 return await message.send(fs.readFileSync('output.png'), {},'image');
             });
 });
-plugin({
+rudhra({
     pattern: 'voice ?(.*)',
     desc: 'audio to ptt converter',
     type: "converter",
@@ -44,7 +44,7 @@ plugin({
         ptt: true
     }, 'audio')
 });
-plugin({
+rudhra({
     pattern: 'gif ?(.*)',
     desc: 'vedio to gif converter',
     type: "converter",
@@ -54,7 +54,7 @@ plugin({
     await webp2mp4File(await message.client.downloadAndSaveMediaMessage(message.reply_message.sticker || message.reply_message.video))
     return await message.send({ url : webpToMp4.result }, {gifPlayback: true, quoted: message.data }, 'video'); 
 });
-plugin({
+rudhra({
     pattern: 'bass ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -75,7 +75,7 @@ plugin({
             })
         });
 });
-plugin({
+rudhra({
     pattern: 'slow ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -97,7 +97,7 @@ plugin({
             })
       });
 });
-plugin({
+rudhra({
     pattern: 'blown ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -118,7 +118,7 @@ plugin({
             })
         });
 });
-plugin({
+rudhra({
     pattern: 'deep ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -139,7 +139,7 @@ plugin({
             })
       });      
 });
-plugin({
+rudhra({
     pattern: 'earrape ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -160,7 +160,7 @@ plugin({
             })
         });	
 });
-plugin({
+rudhra({
     pattern: 'fast ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -181,7 +181,7 @@ plugin({
             })
      });
 });
-plugin({
+rudhra({
     pattern: 'fat ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -202,7 +202,7 @@ plugin({
             })
         });
 });
-plugin({
+rudhra({
     pattern: 'nightcore ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -223,7 +223,7 @@ plugin({
             })
         });  
 });
-plugin({
+rudhra({
     pattern: 'reverse ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -244,7 +244,7 @@ plugin({
             })
         });  
 });
-plugin({
+rudhra({
     pattern: 'squirrel ?(.*)',
     desc: 'audio edit',
     type: "audio-edit",
@@ -266,7 +266,7 @@ plugin({
         });
 });
 
-plugin({
+rudhra({
     pattern: 'mp3 ?(.*)',
     desc: 'video to mp3 converter',
     type: "converter",
