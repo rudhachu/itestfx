@@ -1,13 +1,13 @@
 const {
-    plugin,
+    rudhra,
     commands,
-    send_alive,
-    send_menu,
+    sendAlive,
+    sendMenu,
     personalDB,
     mode
 } = require('../lib')
 
-plugin({
+rudhra({
 	pattern: 'list',
 	desc: 'list all command with description',
 	react: "💯",
@@ -26,7 +26,7 @@ plugin({
 	return await message.send(list);
 });
 
-plugin({
+rudhra({
     pattern: 'menu',
     desc: 'list all commands',
     react: "📰",
@@ -36,10 +36,10 @@ plugin({
     return await send_menu(message);
 });
 
-plugin({
+rudhra({
     pattern: 'alive',
     desc: 'show bot online',
-    react: "🥰",
+    react: "🧬",
     type: 'info',
     fromMe: mode
 }, async (message, match) => {
