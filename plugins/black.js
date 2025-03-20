@@ -1,6 +1,6 @@
 const ff = require('fluent-ffmpeg');
 const {
-   plugin,
+   rudhra,
    mode,
    getBuffer,
    extractUrlsFromString
@@ -13,7 +13,7 @@ const {
    fromBuffer
 } = require('file-type');
 
-plugin({
+rudhra({
    pattern: 'black ? (.*)',
    fromMe: mode,
    desc: 'mix image and audio to video',
