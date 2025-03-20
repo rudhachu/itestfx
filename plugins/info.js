@@ -1,6 +1,6 @@
-const { plugin, mode, linkPreview, runtime } = require("../lib/");
+const { rudhra, mode, linkPreview, runtime } = require("../lib/");
 
-plugin({
+rudhra({
     pattern: "uptime",
     type: "info",
     desc: "Shows bot uptime.",
@@ -13,7 +13,7 @@ plugin({
 	})
 });
   
-plugin({
+rudhra({
     pattern: 'ping ?(.*)',
     desc: 'check bot speed',
     react: "💯",
