@@ -1,5 +1,5 @@
 const {
-    plugin,
+    rudhra,
     getJson,
     isUrl,
     mode
@@ -13,7 +13,7 @@ const isFbUrl = (text) => /(https?:\/\/(?:www\.)?(?:facebook\.com|fb\.com|fb\.wa
 const isYtUrl = (text) => /(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)[\w-]+)/.test(text);
 
 // Plugin to handle auto media downloads
-plugin({
+rudhra({
     on: "text",
     fromMe: mode,
     desc: "Auto download media from any URL",
