@@ -1,9 +1,9 @@
 const {
-    plugin,
+    rudhra,
     personalDB
 } = require("../lib")
 
-plugin({
+rudhra({
     pattern: 'setcmd',
     desc: 'set sticker as command',
     react: "😛",
@@ -16,7 +16,7 @@ plugin({
     await personalDB(['sticker_cmd'], {content:{[match]: message.reply_message.msg.fileSha256.join("")}},'add');
     return await message.reply(`_successfully set command *${match}*_`)
 });
-plugin({
+rudhra({
     pattern: 'dltcmd',
     desc: 'delete a media command',
     react: "💥",
@@ -27,7 +27,7 @@ plugin({
     await personalDB(['sticker_cmd'], {content:{id: match}},'delete');
     return await message.reply(`_successfully removed command *${match}*_`)
 });
-plugin({
+rudhra({
     pattern: 'getcmd',
     desc: 'get list of sticker command',
     react: "💥",
