@@ -1,10 +1,10 @@
 const {
-       plugin,
+       rudhra,
        mode
 } = require('../lib');
 const { fromBuffer } = require('file-type');
 
-plugin({
+rudhra({
     pattern: 'doc ?(.*)',
     desc: "convert media to document",
     react: "🔂",
