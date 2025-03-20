@@ -1,5 +1,5 @@
 const {
-	plugin,
+	rudhra,
 	isAdmin,
 	isBotAdmin,
 	linkPreview,
@@ -7,7 +7,7 @@ const {
 } = require('../lib');
 
 
-plugin({
+rudhra({
 	pattern: 'promote ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -32,7 +32,7 @@ plugin({
 	})
 });
 
-plugin({
+rudhra({
 	pattern: 'demote ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -57,7 +57,7 @@ plugin({
 	})
 });
 
-plugin({
+rudhra({
 	pattern: 'kick ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -103,7 +103,7 @@ plugin({
 	}
 });
 
-plugin({
+rudhra({
 	pattern: 'revoke ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -123,7 +123,7 @@ plugin({
 	})
 });
 
-plugin({
+rudhra({
 	pattern: 'invite ?(.*)',
 	type: 'group',
 	onlyGroup: true,
@@ -139,7 +139,7 @@ plugin({
 	})
 });
 
-plugin({
+rudhra({
 	pattern: 'lock ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -157,7 +157,7 @@ plugin({
 	return await message.reply('*Group Settings Locked*')
 });
 
-plugin({
+rudhra({
 	pattern: 'unlock ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -175,7 +175,7 @@ plugin({
 	return await message.reply('*Group Settings Unlocked*')
 });
 
-plugin({
+rudhra({
 	pattern: 'mute ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -195,7 +195,7 @@ plugin({
 	})
 });
 
-plugin({
+rudhra({
 	pattern: 'unmute ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -215,7 +215,7 @@ plugin({
 	})
 });
 
-plugin({
+rudhra({
 	pattern: 'gdesc ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -240,7 +240,7 @@ plugin({
 });
 
 
-plugin({
+rudhra({
 	pattern: 'gname ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -264,7 +264,7 @@ plugin({
 	})
 });
 
-plugin({
+rudhra({
 	pattern: 'left ?(.*)',
 	type: 'group',
 	onlyGroup: true,
@@ -274,7 +274,7 @@ plugin({
 	await message.client.groupLeave(message.jid)
 });
 
-plugin({
+rudhra({
 	pattern: 'gpp ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -297,7 +297,7 @@ plugin({
 	})
 })
 
-plugin({
+rudhra({
 	pattern: 'fullgpp ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -319,7 +319,7 @@ plugin({
 	})
 });
 
-plugin({
+rudhra({
 	pattern: 'join ?(.*)',
 	type: 'owner',
 	fromMe: true,
@@ -338,7 +338,7 @@ plugin({
 	})
 });
 
-plugin({
+rudhra({
 	pattern: 'add ?(.*)',
 	type: 'group',
 	fromMe: true,
@@ -391,7 +391,7 @@ plugin({
 	}
 });
 
-plugin({
+rudhra({
 	pattern: 'ginfo ?(.*)',
 	fromMe: true,
 	desc: 'Shows group invite info',
