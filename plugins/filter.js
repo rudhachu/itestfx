@@ -1,9 +1,9 @@
 const {
-    plugin,
+    rudhra,
     groupDB,
 } = require('../lib');
 
-plugin({
+rudhra({
     pattern: 'filter ?(.*)',
     desc: 'set filters in chat',
     react: '🌝',
@@ -34,7 +34,7 @@ plugin({
 });
 
 
-plugin({
+rudhra({
     pattern: 'stop ?(.*)',
     desc: 'remove filters fromg group',
     react: '😫',
