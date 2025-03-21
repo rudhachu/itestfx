@@ -1,5 +1,5 @@
 const {
-    plugin,
+    rudhra,
     groupDB,
     isAdmin,
     isBotAdmin,
@@ -7,9 +7,9 @@ const {
 } = require('../lib');
 
 
-plugin({
+rudhra({
     pattern: 'warn ?(.*)',
-    desc: 'Give warning to grpup members',
+    desc: 'Give warning to group members',
     react: '😑',
     type: 'action',
     fromMe: true,
