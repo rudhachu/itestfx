@@ -1,13 +1,11 @@
-const { TRT, mode, plugin } = require('../lib');
+const { TRT, mode, rudhra } = require('../lib');
 
-plugin(
-	{
-		pattern: 'trt ?(.*)',
-		fromMe: mode,
-		desc: 'convert texts to various languages',
-		type: 'converter',
-	},
-	async (message, match) => {
+rudgra({
+	pattern: 'trt ?(.*)',
+	fromMe: mode,
+	desc: 'convert texts to various languages',
+	type: 'converter'
+},async (message, match) => {
 		if (!message.reply_message.text)
 			return await message.send(
 				'_give me some query_'
