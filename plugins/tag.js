@@ -1,9 +1,9 @@
 const {
-    plugin,
-    addSpace
+       rudhra,
+       addSpace
 } = require('../lib');
 
-plugin({
+rudhra({
     pattern: 'tag ?(.*)',
     desc: 'tag all members',
     type: "owner",
