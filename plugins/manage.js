@@ -1,11 +1,11 @@
 const {
-    plugin,
+    rudhra,
     groupDB
 } = require('../lib');
 const actions = ['kick','warn','null']
 
 
-plugin({
+rudhra({
     pattern: 'antiword ?(.*)',
     desc: 'remove users who use restricted words',
     type: "manage",
@@ -43,7 +43,7 @@ plugin({
     }
 });
 
-plugin({
+rudhra({
     pattern: 'antilink ?(.*)',
     desc: 'remove users who use bot',
     type: "manage",
@@ -69,7 +69,7 @@ plugin({
     }
 });
 
-plugin({
+rudhra({
     pattern: 'antifake ?(.*)',
     desc: 'remove fake numbers',
     fromMe: true,
@@ -98,7 +98,7 @@ plugin({
     return await message.send(`_Antifake Updated_`);
 });
 
-plugin({
+rudhra({
     pattern: 'antidelete ?(.*)',
     desc: 'forward deleted messages',
     type: 'manage',
@@ -119,7 +119,7 @@ plugin({
     }
 });
 
-plugin({
+rudhra({
     pattern: 'antibot ?(.*)',
     desc: 'remove users who use bot',
     type: "manage",
@@ -145,7 +145,7 @@ plugin({
     }
 });
 
-plugin({
+rudhra({
     pattern: 'antidemote ?(.*)',
     desc: 'demote actor and re-promote demoted person',
     type: 'manage',
@@ -166,7 +166,7 @@ plugin({
     }
 });
 
-plugin({
+rudhra({
     pattern: 'antipromote ?(.*)',
     desc: 'demote actor and re-promote demoted person',
     type: 'manage',
