@@ -1,5 +1,5 @@
 const {
-    plugin,
+    rudhra,
     mode,
     weather,
     ringtone,
@@ -9,7 +9,7 @@ const {
 } = require('../lib');
 
 
-plugin({
+rudhra({
     pattern: 'ringtone',
     fromMe: mode,
     desc: 'download ringtone',
