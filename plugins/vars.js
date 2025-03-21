@@ -1,5 +1,5 @@
-const { plugin, config } = require('../lib'); 
-plugin({
+const { rudhra, config } = require('../lib'); 
+rudhra({
         pattern: 'getvar ?(.*)',
         fromMe: true,
         desc: 'show all config var',
