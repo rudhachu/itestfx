@@ -1,10 +1,10 @@
 const {
-    plugin,
+    rudhra,
     mode,
     TTS
 } = require('../lib');
 
-plugin({
+rudhra({
     pattern: 'tts',
     fromMe: mode,
     desc: 'text to speech',
