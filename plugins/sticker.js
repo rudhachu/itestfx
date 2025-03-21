@@ -1,13 +1,12 @@
 const {
-  plugin,
+  rudhra,
   mode,
   config
 } = require('../lib');
 const fs = require("fs");
 const path = require("path");
 
-plugin(
-  {
+rudhra({
     pattern: "sticker",
     fromMe: mode,
     desc: 'make stickers',
