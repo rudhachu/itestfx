@@ -1,10 +1,10 @@
 const {
-    plugin,
+    rudhra,
     groupDB,
     config
 } = require('../lib');
 
-plugin({
+rudhra({
     pattern: 'pdm ?(.*)',
     desc: 'promote, demote message',
     type: 'manage',
