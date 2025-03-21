@@ -1,12 +1,12 @@
 const {
-        plugin,
+        rudhra,
         commands,
         sleep,
         personalDB,
         linkPreview
 } = require('../lib');
 
-plugin({
+rudhra({
         pattern: 'toggle ?(.*)',
         fromMe: true,
         desc: 'disable or enable a command',
