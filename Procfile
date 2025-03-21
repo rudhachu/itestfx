@@ -1,5 +1,2 @@
-web: npm start || yarn start
-
-
-
-# node index.js
+run:
+   worker: npm start 
