@@ -1,10 +1,10 @@
 const {
-	plugin,
+	rudhra,
 	poll,
 	PREFIX
 } = require('../lib');
 
-plugin({
+rudhra({
 	pattern: 'vote|poll ?(.*)',
 	desc: 'create a poll message',
 	fromMe: true,
