@@ -1,6 +1,6 @@
 const { TRT, mode, rudhra } = require('../lib');
 
-rudgra({
+rudhra({
 	pattern: 'trt ?(.*)',
 	fromMe: mode,
 	desc: 'convert texts to various languages',
