@@ -10,12 +10,12 @@ const heroku = new Heroku({
 	token: process.env.HEROKU_API_KEY
 })
 const {
-	plugin,
+	rudhra,
 	GenListMessage,
 	linkPreview
 } = require('../lib');
 
-plugin({
+rudhra({
 	pattern: 'update$',
 	fromMe: true,
 	desc: 'update the bot',
@@ -40,16 +40,16 @@ plugin({
 	await git.fetch();
 	let commits = await git.log(['main' + '..origin/' + 'main']);
 	if (commits.total === 0) {
-		return await message.send('_already up-to-date_', {linkPreview: linkPreview()})
+		return await message.send('*Already up-to-date*', {linkPreview: linkPreview()})
 	} else {
-		await message.send("_*updating...*_");
+		await message.send("*Updating...*");
 		let al
 		try {
 			await heroku.get('/apps/' + process.env.HEROKU_APP_NAME)
 		} catch {
 			await git.reset("hard", ["HEAD"])
 			await git.pull()
-			await message.send("_Successfully updated. Please manually update npm modules if applicable!_", {linkPreview: linkPreview()})
+			await message.send("*Successfully updated. Please manually update npm modules if applicable!*", {linkPreview: linkPreview()})
 			process.exit(0);
 		}
 		git.fetch('upstream', 'main');
