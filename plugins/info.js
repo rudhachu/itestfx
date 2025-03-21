@@ -16,12 +16,13 @@ rudhra({
 rudhra({
     pattern: 'ping ?(.*)',
     desc: 'check bot speed',
-    react: "💯",
+    react: "🚀",
     fromMe: mode,
     type: 'info'
 }, async (message, match) => {
-    const start = new Date().getTime()
-    const msg = await message.send('Testing Ping!')
-    const end = new Date().getTime()
-    return await msg.edit('*⚡Pong!* ' + (end - start) + ' ms');
+    const start = new Date().getTime();
+    const msg = await message.send('Checking!');
+    const end = new Date().getTime();
+    const responseTime = (end - start) / 1000;
+    return await msg.edit(`*Response: ${responseTime} secs*`);
 });
