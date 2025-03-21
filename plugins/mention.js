@@ -1,5 +1,5 @@
 const {
-        plugin,
+        rudhra,
         mention,
         personalDB,
         GenListMessage,
@@ -7,7 +7,7 @@ const {
 } = require('../lib');
 
 
-plugin({
+rudhra({
         pattern: 'mention ?(.*)',
         on: 'all',
         allowBot: true,
