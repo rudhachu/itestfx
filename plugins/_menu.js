@@ -18,7 +18,7 @@ rudhra({
 		list = "";
 	commands.map((cmd => {
 		if (cmd.pattern && cmd.desc) {
-			list += `${count++} *${cmd.pattern.replace(/[^a-zA-Z0-9,-]/g,"")}*\n_${cmd.desc}_\n\n`;
+			list += `${count++} *${cmd.pattern.replace(/[^a-zA-Z0-9,-]/g,"")}*\n${cmd.desc}\n\n`;
 		} else {
 			list += `${count++} *${cmd.pattern?cmd.pattern.replace(/[^a-zA-Z0-9,-]/g,""):''}*\n`
 		}
