@@ -1,9 +1,9 @@
 const {
-	plugin,
-	personalDB
+        rudhra,
+        personalDB
 } = require('../lib')
 
-plugin({
+rudhra({
 	pattern: 'shutoff ?(.*)',
 	desc: 'turn off the bot',
 	type: 'owner',
@@ -23,7 +23,7 @@ plugin({
 	return process.exit(0)
 });
 
-plugin({
+rudhra({
 	pattern: 'shuton ?(.*)',
 	desc: 'turn on the bot',
 	type: 'owner',
