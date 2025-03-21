@@ -70,7 +70,7 @@ rudhra({
 	if (commits.total === 0) {
 		return await message.send('*Already up-to-date*', {linkPreview: linkPreview()})
 	} else {
-		let updates = '𝗟𝗜𝗦𝗧 𝗢𝗙 𝗡𝗘𝗪 𝗨𝗣𝗗𝗔𝗧𝗘𝗦';
+		let updates = '𝗟𝗜𝗦𝗧 𝗢𝗙 𝗡𝗘𝗪 𝗨𝗣𝗗𝗔𝗧𝗘𝗦\n\n';
 		commits['all'].map(
 			(commit) => {
 				updates += "```commit: " + commit.date.substring(0, 10)+'```\n```message: ' +commit.message+'```\n```author: ' +commit.author_name + "```\n\n";
