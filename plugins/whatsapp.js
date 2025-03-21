@@ -1,5 +1,5 @@
 const {
-	plugin,
+	rudhra,
 	mode,
 	getCompo,
 	sleep,
@@ -11,7 +11,7 @@ const {
 	WA_DEFAULT_EPHEMERAL
 } = require("@whiskeysockets/baileys");
 
-plugin({
+rudhra({
         pattern: 'whois ?(.*)',
         fromMe: mode,
         type: 'info',
@@ -44,8 +44,8 @@ plugin({
                 }, 'image')
 })
 
-plugin({
-	pattern: 'del',
+rudhra({
+	pattern: 'dlt',
 	desc: 'deleted a message thet send by bot',
 	react: "⚒️",
 	type: 'whatsapp',
@@ -57,8 +57,8 @@ plugin({
 		key: message.reply_message.data.key
 	}, {}, 'delete');
 });
-plugin({
-	pattern: 'dlt',
+rudhra({
+	pattern: 'del',
 	desc: 'delete messages using bot',
 	react: "🤌",
 	fromMe: mode,
@@ -68,100 +68,14 @@ plugin({
 	if (match) return;
 	let admin = await isAdmin(message);
 	let BotAdmin = await isBotAdmin(message);
-	if (!BotAdmin) return await message.reply('bot is nog admin');
-	if (!message.reply_message.msg) return message.send(lang.BASE.NEED.format("message"));
+	if (!BotAdmin) return await message.reply('bot is not admin');
+	if (!message.reply_message.msg) return message.send('*Please reply to a message*');
 	return await message.send({
 		key: message.reply_message.data.key
 	}, {}, 'delete');
 })
 
-plugin({
-	pattern: '$iswa ?(.*)',
-	fromMe: mode,
-	desc: 'list users who exist on whatsapp',
-	type: 'search',
-}, async (m, match) => {
-	match = match || m.reply_message.text
-	if (!match) return await m.send(".iswa 920000000x");
-	if (!match.match('x')) return await m.send(".iswa 920000000x");
-	let xlength = match.replace(/[0-9]/gi, '')
-	if (xlength.length > 3) return await m.send('x limit reached')
-	let count = xlength.length == 3 ? 1000 : xlength.length == 2 ? 100 : 10;
-	const {
-		key
-	} = await m.send('please White');
-	let ioo = await getCompo(match)
-	let bcs = [],
-		notFound = []
-	ioo.map(async (a) => {
-		let [rr] = await m.client.onWhatsApp(a)
-		if (rr && rr.exists) {
-			bcs.push(rr.jid);
-		}
-	});
-	let msg = "",
-		prvt = [],
-		abt, n = 1;
-	await sleep(2500);
-	msg += lang.WHATSAPP.ISWA.EXIST.format(bcs.length, count)
-	bcs.map(async (jid) => {
-		abt = await m.client.fetchStatus(jid).catch((e) => {
-			notFound.push(jid);
-		});
-		if (!abt.status) {
-			prvt.push(jid)
-		} else {
-			msg += `${n++}. *Number :* ${jid.replace(/[^0-9]/gi,'')}\n*About :* ${abt.status}\n*Date :* ${abt.setAt.toLocaleString(undefined, {timeZone: 'Asia/Kolkata'})}\n\n`
-		}
-	})
-	await sleep(1750)
-	if (prvt.length) {
-		msg += lang.WHATSAPP.ISWA.PRIVACY.format(prvt.length, bcs.length)
-		prvt.map((num) => {
-			msg += `*Number:* ${num.replace(/[^0-9]/gi,'')}\n`
-		});
-	}
-	await sleep(750)
-	if (notFound.length) {
-		msg += lang.WHATSAPP.ISWA.NOT_FOUND.format(bcs.length - n - prvt.length, bcs.length)
-		notFound.map((j) => {
-			msg += `*Number:* ${j.replace(/[^0-9]/gi,'')}\n`
-		})
-	}
-	await sleep(50)
-	return await m.editMessage(m.jid, msg, key)
-});
-
-
-plugin({
-	pattern: '$nowa ?(.*)',
-	fromMe: mode,
-	desc: 'list numbers thet not exist on whatsapp',
-	type: 'search',
-}, async (m, match) => {
-	match = match || m.reply_message.text
-	if (!match) return await m.send(lang.WHATSAPP.NOWA.NO_NUMBER.format(".nowa 920000000x"));
-	if (!match.match('x')) return await m.send(lang.WHATSAPP.NOWA.NOT_VALID.format(".nowa 920000000x"));
-	let xlength = match.replace(/[0-9]/gi, '')
-	if (xlength.length > 3) return await m.send(lang.WHATSAPP.NOWA.X_LENGTH)
-	let count = xlength.length == 3 ? 1000 : xlength.length == 2 ? 100 : 10;
-	const {
-		key
-	} = await m.send(lang.WHATSAPP.NOWA.WAIT);
-	let ioo = await getCompo(match)
-	let bcs = lang.WHATSAPP.NOWA.LIST,
-		n = 1;
-	ioo.map(async (a) => {
-		let [rr] = await m.client.onWhatsApp(a).catch((e) => console.log(e))
-		if (!rr) bcs += "```wa.me/" + a + "```\n";
-	});
-	await sleep(2000)
-	bcs = bcs.replace("{}", (bcs.split('\n').length - 3).toString());
-	await sleep(100);
-	return await m.editMessage(m.jid, bcs, key)
-});
-
-plugin({
+rudhra({
 	pattern: 'jid',
 	fromMe: mode,
 	desc: 'get jid',
@@ -174,7 +88,7 @@ plugin({
 		await message.send(message.from)
 	}
 });
-plugin({
+rudhra({
 	pattern: 'block',
 	desc: 'block a user',
 	react: "💯",
@@ -187,7 +101,7 @@ plugin({
 		await message.client.updateBlockStatus(message.from, "block")
 	}
 }); // Block user
-plugin({
+rudhra({
 	pattern: 'unblock',
 	desc: 'unblock a person',
 	react: "💯",
@@ -200,32 +114,32 @@ plugin({
 		await message.client.updateBlockStatus(message.from, "unblock") // Unblock user
 	}
 });
-plugin({
+rudhra({
 	pattern: "pp",
 	desc: 'change profile picture',
 	react: "😁",
 	type: 'owner',
 	fromMe: true
 }, async (message, match) => {
-	if (!message.reply_message.image) return await message.reply(lang.BASE.NEED.format("image message"));
+	if (!message.reply_message.image) return await message.send('*Please reply to a image message*');
 	let download = await message.client.downloadMediaMessage(message.reply_message.image);
 	await message.client.updateProfilePicture(message.botNumber, download);
-	return message.reply(lang.USER.PP.SUCCESS);
+	return message.send('*Profile picture updated!*');
 });
-plugin({
+rudhra({
 	pattern: "fullpp",
 	desc: 'set profile picture',
 	react: "🔥",
 	type: 'owner',
 	fromMe: true
 }, async (message, match) => {
-	if (!message.reply_message.image) return await message.reply(lang.BASE.NEED.format("image message"));
+	if (!message.reply_message.image) return await message.send('*Please reply to a image message*');
 	let download = await message.reply_message.download();
 	await message.updateProfilePicture(message.botNumber, download);
-	return message.reply(lang.USER.FULL_PP.SUCCESS);
+	return message.send('*Profile picture updated!*');
 });
 
-plugin({
+rudhra({
 	pattern: 'clear ?(.*)',
 	fromMe: true,
 	desc: 'delete whatsapp chat',
@@ -241,7 +155,7 @@ plugin({
 	await message.send('_Cleared_')
 })
 
-plugin({
+rudhra({
 	pattern: 'archive ?(.*)',
 	fromMe: true,
 	desc: 'archive whatsapp chat',
@@ -259,7 +173,7 @@ plugin({
 	await message.send('_Archived_')
 })
 
-plugin({
+rudhra({
 	pattern: 'unarchive ?(.*)',
 	fromMe: true,
 	desc: 'unarchive whatsapp chat',
@@ -277,7 +191,7 @@ plugin({
 	await message.send('_Unarchived_')
 })
 
-plugin({
+rudhra({
 	pattern: 'chatpin ?(.*)',
 	fromMe: true,
 	desc: 'pin a chat',
@@ -289,7 +203,7 @@ plugin({
 	await message.send('_Pined_')
 })
 
-plugin({
+rudhra({
 	pattern: 'unpin ?(.*)',
 	fromMe: true,
 	desc: 'unpin a msg',
@@ -301,7 +215,7 @@ plugin({
 	await message.send('_Unpined_')
 })
 
-plugin({
+rudhra({
 	pattern: 'setbio ?(.*)',
 	fromMe: true,
 	desc: 'To change your profile status',
@@ -313,7 +227,7 @@ plugin({
 	await message.send('_Profile status updated_')
 })
 
-plugin({
+rudhra({
 	pattern: 'setname ?(.*)',
 	fromMe: true,
 	desc: 'To change your profile name',
@@ -325,7 +239,7 @@ plugin({
 	await message.send('_Profile name updated_')
 })
 
-plugin({
+rudhra({
 	pattern: 'disappear  ?(.*)',
 	fromMe: true,
 	desc: 'turn on default disappear messages',
@@ -339,7 +253,7 @@ plugin({
 	await message.send('_disappearmessage activated_')
 })
 
-plugin({
+rudhra({
 	pattern: 'getprivacy ?(.*)',
 	fromMe: true,
 	desc: 'get your privacy settings',
@@ -354,16 +268,16 @@ plugin({
 		groupadd,
 		calladd
 	} = await message.client.fetchPrivacySettings(true);
-	const msg = `*♺ my privacy*
+	const msg = `*MY PRIVACY*
 
-*ᝄ name :* ${message.client.user.name}
-*ᝄ online:* ${online}
-*ᝄ profile :* ${profile}
-*ᝄ last seen :* ${last}
-*ᝄ read receipt :* ${readreceipts}
-*ᝄ about seted time :*
-*ᝄ group add settings :* ${groupadd}
-*ᝄ call add settings :* ${calladd}`;
+*name :* ${message.client.user.name}
+*online:* ${online}
+*profile :* ${profile}
+*last seen :* ${last}
+*read receipt :* ${readreceipts}
+*about seted time :*
+*group add settings :* ${groupadd}
+*call add settings :* ${calladd}`;
 	let img;
 	try {
 		img = {
@@ -371,14 +285,14 @@ plugin({
 		};
 	} catch (e) {
 		img = {
-			url: "https://i.ibb.co/sFjZh7S/6883ac4d6a92.jpg"
+			url: "https://i.imgur.com/Zim2VKH.jpeg"
 		};
 	}
 	await message.send(img, {
 		caption: msg
 	}, 'image');
 })
-plugin({
+rudhra({
 	pattern: 'lastseen ?(.*)',
 	fromMe: true,
 	desc: 'to change lastseen privacy',
@@ -390,7 +304,7 @@ plugin({
 	await message.client.updateLastSeenPrivacy(match)
 	await message.send(`_Privacy settings *last seen* Updated to *${match}*_`);
 })
-plugin({
+rudhra({
 	pattern: 'online ?(.*)',
 	fromMe: true,
 	desc: 'to change online privacy',
@@ -402,7 +316,7 @@ plugin({
 	await message.client.updateOnlinePrivacy(match)
 	await message.send(`_Privacy Updated to *${match}*_`);
 })
-plugin({
+rudhra({
 	pattern: 'mypp ?(.*)',
 	fromMe: true,
 	desc: 'privacy setting profile picture',
@@ -414,7 +328,7 @@ plugin({
 	await message.client.updateProfilePicturePrivacy(match)
 	await message.send(`_Privacy Updated to *${match}*_`);
 })
-plugin({
+rudhra({
 	pattern: 'mystatus ?(.*)',
 	fromMe: true,
 	desc: 'privacy for my status',
@@ -426,7 +340,7 @@ plugin({
 	await message.client.updateStatusPrivacy(match)
 	await message.send(`_Privacy Updated to *${match}*_`);
 })
-plugin({
+rudhra({
 	pattern: 'read ?(.*)',
 	fromMe: true,
 	desc: 'privacy for read message',
@@ -438,7 +352,7 @@ plugin({
 	await message.client.updateReadReceiptsPrivacy(match)
 	await message.send(`_Privacy Updated to *${match}*_`);
 })
-plugin({
+rudhra({
 	pattern: 'groupadd ?(.*)',
 	fromMe: true,
 	desc: 'privacy for group add',
