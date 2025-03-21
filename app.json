@@ -2,7 +2,7 @@
   "name": "rudhra-bot",
   "description": "Multi featured whatsapp bot",
   "keywords": ["rudhra-bot", "rudhra"],
-  "success_url": "/md/",
+  "success_url": "",
   "stack": "container",
   "env": {
     "SESSION_ID": {
