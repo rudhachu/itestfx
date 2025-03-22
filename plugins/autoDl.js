@@ -96,36 +96,84 @@ const downloadYoutubeMedia = async (message, match) => {
     try {
         await message.reply("_Downloading..._");
 
+        // Extract YouTube link from message
         const regex = /(https?:\/\/[^\s]+)/;
-        const link = match.match(regex)[0];
+        const linkMatch = match.match(regex);
+        if (!linkMatch) return message.reply("Invalid YouTube link.");
 
+        const link = linkMatch[0];
         const ytApi = `https://api.siputzx.my.id/api/d/ytmp4?url=${link}`;
+        
+        // Fetch video details
         const response = await fetch(ytApi);
         const result = await response.json();
-        const data = result.data;
-
-        if (!data || !data.dl) {
-            return await message.reply("Failed to retrieve video. Try another link.");
+        
+        if (!result || !result.data || !result.data.dl) {
+            return message.reply("Failed to fetch media. Please try again.");
         }
 
-        const mp3 = data.dl;
-        const title = data.title;
+        const { dl: mp4, title } = result.data;
 
-        await message.reply(`_Downloading ${title}_`);
+        // Send media selection menu
+        const optionsText = `*${title}*\n\n *1.* *Video*\n *2.* *Audio*\n *3.* *Document*\n\n*Reply with a number to download*`;
+        const contextInfoMessage = {
+            text: optionsText,
+            contextInfo: {
+                externalAdReply: {
+                    title: "𝗬𝗼𝘂𝗧𝘂𝗯𝗲 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗲𝗿",
+                    body: "ʀᴜᴅʜʀᴀ ʙᴏᴛ",
+                    sourceUrl: link,
+                    mediaUrl: link,
+                    mediaType: 1,
+                    showAdAttribution: true,
+                    thumbnailUrl: "https://i.imgur.com/xWzUYiF.png"
+                }
+            }
+        };
 
-        await message.client.sendMessage(
-            message.jid,
-            { audio: { url: mp3 }, mimetype: 'audio/mp4' },
-            { quoted: message.data }
-        );
+        const sentMsg = await message.client.sendMessage(message.jid, contextInfoMessage, { quoted: message.data });
 
-        await message.client.sendMessage(
-            message.jid,
-            { document: { url: mp3 }, mimetype: 'audio/mpeg', fileName: `${title}.mp3`, caption: `_${title}_` },
-            { quoted: message.data }
-        );
+        // Wait for user response
+        conn.ev.on('messages.upsert', async (msg) => {
+        const newMessage = msg.messages[0];
+            
+            if (
+                newMessage.key.remoteJid === message.jid &&
+                newMessage.message?.extendedTextMessage?.contextInfo?.stanzaId === sentMsg.key.id
+            ) {
+                const userReply = newMessage.message?.conversation || newMessage.message?.extendedTextMessage?.text;
+
+                if (userReply === '1') {
+                    await message.client.sendMessage(
+                        message.jid,
+                        { video: { url: mp4 }, mimetype: "video/mp4" },
+                        { quoted: message.data }
+                    );
+                } else if (userReply === '2') {
+                    await message.client.sendMessage(
+                        message.jid,
+                        { audio: { url: mp4 }, mimetype: "audio/mpeg" },
+                        { quoted: message.data }
+                    );
+                } else if (userReply === '3') {
+                    await message.client.sendMessage(
+                        message.jid,
+                        {
+                            document: { url: mp4 },
+                            mimetype: 'audio/mpeg',
+                            fileName: `${title}.mp3`,
+                            caption: `_${title}_`
+                        },
+                        { quoted: message.data }
+                    );
+                } else {
+                    await message.client.sendMessage(message.jid, { text: "Invalid option. Reply with 1, 2, or 3." });
+                }
+            }
+        });
+
     } catch (error) {
-        console.error('Error fetching audio:', error);
-        await message.reply('Failed to download audio. Please try again later.');
+        console.error("Error in downloadYoutubeMedia:", error);
+        message.reply("An error occurred. Please try again later.");
     }
 };
